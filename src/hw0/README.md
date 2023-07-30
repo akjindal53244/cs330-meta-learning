@@ -27,4 +27,7 @@ I have trained multiple models to understand few things:
 3. Effect of different weighting schemes and their performance on both tasks.
 4. Do both tasks benefit from each other? Which task benefit more by other task?
 
+![Screenshot from 2023-07-30 11-57-39](https://github.com/akjindal53244/cs330-meta-learning/assets/5215386/79a7f607-6498-4f92-b960-3c9911d06d33)
+
+
 We have found improvements in MSE loss by clipping model predictions for rating prediction task. This is achieved by adding a sigmoid layer on top of last layer of task-2 and multiplying prediction by 5. This preserves differentiable properties of the model and keeps model prediction in range of [0,5]. This can be set to true by passing `--clip_predicted_rating` flag to model training script.
