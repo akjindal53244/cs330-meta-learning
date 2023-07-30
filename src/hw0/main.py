@@ -16,7 +16,9 @@ def main(config):
 
     net = MultiTaskNet(train.num_users,
                        train.num_items,
-                       embedding_sharing=config.shared_embeddings)
+                       embedding_sharing=config.shared_embeddings,
+                       clip_predicted_rating=config.clip_predicted_rating
+                       )
     model = MultitaskModel(interactions=train,
                            representation=net,
                            factorization_weight=config.factorization_weight,
@@ -44,6 +46,7 @@ if __name__=='__main__':
                         action='store_true')
     parser.add_argument('--no_shared_embeddings', dest='shared_embeddings',
                         action='store_false')
+    parser.add_argument('--clip_predicted_rating', default=False, action='store_true')
     parser.add_argument('--logdir', type=str,
                         default='run/shared=True_LF=0.99_LR=0.01')
     main(parser.parse_args())
